@@ -1,0 +1,87 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
+<head>
+<title>imageView</title>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						$("#sort3")
+								.click(
+										function() {
+											$
+													.ajax({
+
+														url : "/ajaxSort4",
+														type : "POST",
+														data : {
+															col : "sort3"
+														},
+														success : function(
+																result) {
+
+															$("#imgView").empty();
+															alert(result.length);
+															for (i = 0; i < result.length; i++) {
+																var tag = "<img src = 'img/sort4/" + result[i].imgTitle + "'/>"
+
+																$('#imgView').append(tag);
+																
+															}
+															
+															
+
+														},
+														error : function(
+																request,
+																status, error) {
+															alert("code = "
+																	+ request.status
+																	+ "message = "
+																	+ request.responseText
+																	+ "error = "
+																	+ error);
+														}
+													});
+										});
+					});
+</script>
+</head>
+<script type="text/javascript">
+	if ('${msg}') {
+		var msg = '${msg}';
+		alert(msg);
+	}
+</script>
+<body>
+	<div style="display: inline-block">
+		<button id="sort3">sort3</button>
+		<button id="sort4">sort4</button>
+		<button id="sort5">sort5</button>
+	</div>
+	<div style="display: inline-block">
+		<form action="/upload3" method="post" enctype="multipart/form-data">
+			<input type="file" name="uploadFile" id="upFile" />
+			<button style="margin-left: 330px;" type="submit" id="upFile">파일업로드</button>
+		</form>
+	</div>
+
+	<br>
+
+	<div id="imgView">
+		<c:forEach items="${imgList}" var="imgList">
+			<img src="img/sort3/${imgList.imgTitle}" />
+		</c:forEach>
+	</div>
+
+</body>
+</html>

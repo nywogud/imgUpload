@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+    <configuration>
+    
+        <typeAliases>
+            <typeAlias type="com.jhl.sortDto.sort3VO" alias="sort3VO"/>
+            <typeAlias type="com.jhl.sortDto.sort4VO" alias="sort4VO"/>
+            <typeAlias type="com.jhl.sortDto.sort5VO" alias="sort5VO"/>
+        </typeAliases>
+        
+    </configuration>
+
+

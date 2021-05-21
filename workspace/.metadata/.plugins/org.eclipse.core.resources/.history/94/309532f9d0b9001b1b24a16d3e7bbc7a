@@ -1,0 +1,30 @@
+package com.jhl.controller;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.jhl.service.sort3Service;
+import com.jhl.sortDto.sort3VO;
+
+@Controller
+public class AjaxSort3 {
+	
+	@Inject
+	sort3Service sort3Service;
+
+	@RequestMapping(value = "/ajaxSort3", method = RequestMethod.POST)
+	@ResponseBody
+	public List<sort3VO> ajaxSort3(@RequestParam("col") String col) throws Exception {
+
+		List<sort3VO> sort3Result = sort3Service.selectAll();
+		return sort3Result;
+	}
+
+}

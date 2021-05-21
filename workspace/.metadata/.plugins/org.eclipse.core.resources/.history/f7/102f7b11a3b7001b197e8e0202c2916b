@@ -1,0 +1,27 @@
+package com.jhl.dao;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.jhl.dto.sort3VO;
+
+@Repository
+public class sort3DAOImp implements sort3DAO {
+	
+	@Inject
+	private SqlSession sqlSession;
+
+	private static final String Namespace = "com.jhl.mappers.sort3Mapper";
+	
+	public List<sort3VO> selectAll() throws Exception{
+		
+		return sqlSession.selectList(Namespace+".selectAll");
+		
+		return null;
+	}
+
+}

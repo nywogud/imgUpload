@@ -1,0 +1,12 @@
+package com.jhl.dao;
+
+import java.util.List;
+
+import com.jhl.sort3Dto.sort3VO;
+
+public interface sort3DAO {
+	
+	//칼럼 sort3의 모든 이미지를 가져온다.
+	public List<sort3VO> selectAll() throws Exception;
+
+}

@@ -1,0 +1,37 @@
+package com.jhl.dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.jhl.sort3Dto.sort3VO;
+
+@Repository
+public class sort3DAOImp implements sort3DAO {
+
+	@Inject
+	private SqlSession sqlSession;
+
+	private static final String Namespace = "com.jhl.mappers.sort3Mapper";
+
+	// 데이터 쿼리를 실행하는 mapper.xml로 부터 데이터를 받아 온다.
+	public List<sort3VO> selectAll() throws Exception {
+
+		return sqlSession.selectList(Namespace + ".selectAll");
+
+	}
+
+	public void insertImg(String fileName, String fileLocation) throws Exception {
+
+		Map<String, String> paraMap = new HashMap<String, String>();
+		paraMap.put("fileName", fileName);
+		paraMap.put("fileLocation", fileLocation);
+		sqlSession.insert(Namespace + ".insertImg", paraMap);
+	}
+}
