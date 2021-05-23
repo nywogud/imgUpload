@@ -24,14 +24,17 @@ public class sort5ServiceImpl implements sort5Service {
 		
 	}
 	
+	//이미지 정보를 디비에 저장한다.
 	public void insertImg(String imgTitle, String imgLocation) throws Exception{
 		sort5dao.insertImg(imgTitle, imgLocation);
 	}
 	
+	//총 이미지 갯수를 호출한다.
 	public int countImg() throws Exception{
 		return sort5dao.countImg();
 	}
 
+	//페이징 처리 후 한 화면을 구성할 갯수만큼 이미지를 불러온다.
 	public List<sort5VO> selectImg(PagingVO vo) throws Exception{
 		return sort5dao.selectImg(vo);
 	}

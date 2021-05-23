@@ -32,13 +32,14 @@ public class UploardController3 {
 			@RequestParam(value= "cntPerPage", required = false) String cntPerPage)
 			throws Exception {
 		
-			//화면 단에서 선택한 이미지 저장
 			if(!(file.getOriginalFilename().isEmpty())){
+				//화면 단에서 선택한 이미지 로컬 저장
 				file.transferTo(new File(FILE_SERVER_PATH, file.getOriginalFilename()));
 				
 				String imgTitle = file.getOriginalFilename();
 				String imgLocation = FILE_SERVER_PATH + "/" + imgTitle;
 				
+				//화면단에서 선택한 이미지 정보 DB 저장.
 				sort3Service.insertImg(imgTitle, imgLocation);
 				
 				//sort3에 있는 이미지 총 갯수 호출

@@ -19,13 +19,14 @@ public class sort3DAOImp implements sort3DAO {
 
 	private static final String Namespace = "com.jhl.mappers.sort3Mapper";
 
-	// 데이터 쿼리를 실행하는 mapper.xml로 부터 데이터를 받아 온다.
+	// 모든 이미지를 가져온다.
 	public List<sort3VO> selectAll() throws Exception {
 
 		return sqlSession.selectList(Namespace + ".selectAll");
 
 	}
 
+	//이미지 정보를 저장한다.
 	public void insertImg(String imgTitle, String imgLocation) throws Exception {
 
 		Map<String, String> paraMap = new HashMap<String, String>();
@@ -34,10 +35,12 @@ public class sort3DAOImp implements sort3DAO {
 		sqlSession.insert(Namespace + ".insertImg", paraMap);
 	}
 
+	//이미지 갯수를 호출한다.
 	public int countImg() throws Exception {
 		return sqlSession.selectOne(Namespace + ".countImg");
 	}
 
+	//페이징 처리 후 한 화면를 구성할 갯수의 이미지를 가져온다.
 	public List<sort3VO> selectImg(PagingVO vo) throws Exception{
 		return sqlSession.selectList(Namespace + ".selectImg", vo);
 	}

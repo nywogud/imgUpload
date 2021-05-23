@@ -27,6 +27,7 @@ public class sort4DAOImp implements sort4DAO {
 
 	}
 
+	//이미지 정보를 저장한다.
 	public void insertImg(String imgTitle, String imgLocation) throws Exception {
 
 		Map<String, String> paraMap = new HashMap<String, String>();
@@ -35,10 +36,12 @@ public class sort4DAOImp implements sort4DAO {
 		sqlSession.insert(Namespace + ".insertImg", paraMap);
 	}
 	
+	//이미지 총 갯수를 출력한다.
 	public int countImg() throws Exception {
 		return sqlSession.selectOne(Namespace + ".countImg");
 	}
 
+	//페이징 처리 후 한 화면을 구성할 갯수만큼의 이미지를 가져온다.
 	public List<sort4VO> selectImg(PagingVO vo) throws Exception{
 		return sqlSession.selectList(Namespace + ".selectImg", vo);
 	}

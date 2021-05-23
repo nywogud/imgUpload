@@ -34,11 +34,13 @@ public class UploardController4 {
 			throws Exception {
 		
 			if(!(file.getOriginalFilename().isEmpty())){
+				//화면단에서 선택한 이미지 로컬 저장.
 				file.transferTo(new File(FILE_SERVER_PATH, file.getOriginalFilename()));
 				
 				String imgTitle = file.getOriginalFilename();
 				String imgLocation = FILE_SERVER_PATH + "/" + imgTitle;
 				
+				//화면단에서 선택한 이미지 정보 DB저장.
 				sort4Service.insertImg(imgTitle, imgLocation);
 				
 				//sort4에 있는 이미지 총 갯수 호출
@@ -65,6 +67,8 @@ public class UploardController4 {
 				//기본 홈 화면
 				return "home4";
 			}else {
+				
+				//파일이 선택되지 않았을 경우 예외처리
 				
 				//sort4에 있는 이미지 총 갯수 호출
 				int total = sort4Service.countImg();

@@ -4,12 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jhl.mappers.sort4Mapper">
-
+	<!-- 모든 이미지 불러옴 -->
 	<select id="selectAll" resultType="sort4VO">
 		SELECT * FROM sort4 ORDER BY
 		imgNumber DESC
 	</select>
-
+	<!-- 이미지 정보를 디비에 저장 -->
 	<select id="insertImg" parameterType="Map">
 		INSERT INTO sort4
 		(imgTitle, imgLocation)
@@ -18,13 +18,13 @@
 		#{imgLocation}
 		)
 	</select>
-	
+
 	<!-- 총 게시글 갯수 출력 -->
 	<select id="countImg" resultType="int">
 		select count(*) from sort4
 	</select>
 
-	<!-- 페이징 처리 후 게시글 조회 -->
+	<!-- 페이징 처리 후 한 화면을 구성할 갯수 만큼의 이미지 조회 -->
 	<select id="selectImg" parameterType="PagingVO"
 		resultType="sort4VO">
 		SELECT
@@ -40,7 +40,7 @@
 		ORDER BY imgNumber DESC
 		) A
 		WHERE
-		A.ROWNUM BETWEEN #{start} AND #{end}	
+		A.ROWNUM BETWEEN #{start} AND #{end}
 	</select>
 
 </mapper>

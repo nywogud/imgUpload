@@ -35,10 +35,10 @@
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="java.awt.print.Pageable"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
-    <fullyQualifiedTypeName name="com.jhl.sortDto.PagingVO"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="com.jhl.service.sort3Service"/>
     <fullyQualifiedTypeName name="com.jhl.sortDto.sort3VO"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.jhl.sortDto.PagingVO"/>
 </qualifiedTypeNameHistroy>

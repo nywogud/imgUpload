@@ -33,11 +33,13 @@ public class UploardController5 {
 			throws Exception {
 		
 			if(!(file.getOriginalFilename().isEmpty())){
+				//화면단에서 선택한 이미지 로컬 저장
 				file.transferTo(new File(FILE_SERVER_PATH, file.getOriginalFilename()));
 				
 				String imgTitle = file.getOriginalFilename();
 				String imgLocation = FILE_SERVER_PATH + "/" + imgTitle;
 				
+				//화면단에서 선택한 이미지 정보 DB저장.
 				sort5Service.insertImg(imgTitle, imgLocation);
 				
 				//sort5에 있는 이미지 총 갯수 호출
