@@ -1,6 +1,7 @@
 package com.jhl.controller;
 
 import java.io.File;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.jhl.sortDto.sort5VO;
 
 
 @Controller
@@ -22,8 +24,7 @@ public class UploardController5 {
 	com.jhl.service.sort5Service sort5Service;
 
 	@RequestMapping(value = "/upload5", method = RequestMethod.POST)
-	public String uploard(@RequestParam("uploadFile") MultipartFile file, Model model
-			,RedirectAttributes redirect)
+	public String uploard(@RequestParam("uploadFile") MultipartFile file, Model model)
 			throws Exception {
 		
 			if(!(file.getOriginalFilename().isEmpty())){
@@ -33,11 +34,15 @@ public class UploardController5 {
 				String imgLocation = FILE_SERVER_PATH + "/" + imgTitle;
 				
 				sort5Service.insertImg(imgTitle, imgLocation);
+				List<sort5VO> imgList = sort5Service.selectAll();
+				model.addAttribute("imgList", imgList);
 				
-				return "redirect:/";
+				return "home5";
 			}else {
-				redirect.addFlashAttribute("msg", "파일이 선택되지 않았습니다.");
-				return "redirect:/";
+				List<sort5VO> imgList = sort5Service.selectAll();
+				model.addAttribute("imgList", imgList);
+				model.addAttribute("msg", "파일이 선택되지 않았습니다.");
+				return "home5";
 			}
 		
 	}

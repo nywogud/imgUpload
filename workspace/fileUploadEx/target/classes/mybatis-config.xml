@@ -8,6 +8,7 @@
             <typeAlias type="com.jhl.sortDto.sort3VO" alias="sort3VO"/>
             <typeAlias type="com.jhl.sortDto.sort4VO" alias="sort4VO"/>
             <typeAlias type="com.jhl.sortDto.sort5VO" alias="sort5VO"/>
+            <typeAlias type="com.jhl.sortDto.PagingVO" alias="PagingVO"/>
         </typeAliases>
         
     </configuration>

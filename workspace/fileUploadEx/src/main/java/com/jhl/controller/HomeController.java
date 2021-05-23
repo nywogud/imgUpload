@@ -1,42 +1,23 @@
 package com.jhl.controller;
 
-import java.util.List;
 
-import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import com.jhl.service.sort3Service;
-import com.jhl.sortDto.sort3VO;
 
 @Controller
 public class HomeController {
-	
-	@Inject
-	private sort3Service sort3Service;
-	
-	//기본 루트는  '/'
+
+
+	// 기본 루트는 '/', sort3가 default
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model, @RequestParam(required = false, value = "msg") String msg) throws Exception {
+	public String home() throws Exception {
+	
+		//기본 홈 화면은 sort3, 리다이렉트
+		return "redirect:/sort3";
 		
-		//페이지 기본 설정은 칼럼 3번
-		List<sort3VO> imgList = sort3Service.selectAll();
-		
-		model.addAttribute("imgList", imgList);
-		
-		// 파일을 첨부하지 않고 업로드 버튼을 클릭하는 경우 경고창 메시지를 담은 model객체를 홈화면으로 전송
-		if(msg != null) {
-			model.addAttribute("msg", msg);
-			return "home";
-		}
-		//기본 홈 화면
-		else {
-			return "home";
-		}
-					
+				
 	}
 		
 }

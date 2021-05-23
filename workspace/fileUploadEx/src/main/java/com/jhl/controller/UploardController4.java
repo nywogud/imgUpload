@@ -1,6 +1,7 @@
 package com.jhl.controller;
 
 import java.io.File;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -10,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jhl.service.sort4ServiceImpl;
+import com.jhl.sortDto.sort4VO;
 
 
 @Controller
@@ -24,8 +25,7 @@ public class UploardController4 {
 	sort4ServiceImpl sort4Service;
 
 	@RequestMapping(value = "/upload4", method = RequestMethod.POST)
-	public String uploard(@RequestParam("uploadFile") MultipartFile file, Model model
-			,RedirectAttributes redirect)
+	public String uploard(@RequestParam("uploadFile") MultipartFile file, Model model)
 			throws Exception {
 		
 			if(!(file.getOriginalFilename().isEmpty())){
@@ -35,11 +35,15 @@ public class UploardController4 {
 				String imgLocation = FILE_SERVER_PATH + "/" + imgTitle;
 				
 				sort4Service.insertImg(imgTitle, imgLocation);
-				
-				return "redirect:/";
+				List<sort4VO> imgList = sort4Service.selectAll();
+				model.addAttribute("imgList", imgList);
+				return "home4";
 			}else {
-				redirect.addFlashAttribute("msg", "파일이 선택되지 않았습니다.");
-				return "redirect:/";
+				
+				List<sort4VO> imgList = sort4Service.selectAll();
+				model.addAttribute("imgList", imgList);
+				model.addAttribute("msg", "파일이 선택되지 않았습니다.");
+				return "home4";
 			}
 		
 	}
