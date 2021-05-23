@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 
@@ -153,10 +154,42 @@
 
 	<br>
 
+	<!-- 이미지를 4개 단위로 끊어서 보여줌 -->
+	<c:set var="i" value="0" />
+	<c:set var="j" value="4" />
 	<div id="imgView">
 		<c:forEach items="${imgList}" var="imgList">
-			<img src="img/sort4/${imgList.imgTitle}" width="200" height="200" />
+			<c:if test="${i%j==0}">
+				<br>
+				<img src="img/sort4/${imgList.imgTitle}" width="200" height="200" />
+			</c:if>
+			<c:if test="${i%j!=0}">
+				<img src="img/sort4/${imgList.imgTitle}" width="200" height="200" />
+			</c:if>
+			<c:set var ="i" value="${i+1}"/>
 		</c:forEach>
+	</div>
+	
+	<div style="display: block; text-align: left;">
+		<c:if test="${paging.startPage != 1 }">
+			<a
+				href="/sort4?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+			var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>[${p}]</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a href="/sort4?nowPage=${p }&cntPerPage=${paging.cntPerPage}">[${p}]</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a
+				href="/sort4?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+		</c:if>
 	</div>
 
 </body>

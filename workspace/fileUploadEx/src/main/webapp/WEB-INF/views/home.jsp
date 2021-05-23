@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +11,8 @@
 <title>imageView</title>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 <!-- <script type="text/javascript">
@@ -135,6 +138,7 @@
 </head>
 
 <body>
+
 	<div style="display: inline-block">
 		<button type="button" onclick="location.href='/sort3'">sort3</button>
 		<button type="button" onclick="location.href='/sort4'">sort4</button>
@@ -151,28 +155,41 @@
 
 	<br>
 
+	<!-- 이미지를 3개 단위로 끊어서 보여줌 -->
+	<c:set var="i" value="0" />
+	<c:set var="j" value="3" />
 	<div id="imgView">
 		<c:forEach items="${imgList}" var="imgList">
-			<img src="img/sort3/${imgList.imgTitle}" width="300" height="300" />
+			<c:if test="${i%j==0}">
+				<br>
+				<img src="img/sort3/${imgList.imgTitle}" width="300" height="300" />
+			</c:if>
+			<c:if test="${i%j!=0}">
+				<img src="img/sort3/${imgList.imgTitle}" width="300" height="300" />
+			</c:if>
+			<c:set var ="i" value="${i+1}"/>
 		</c:forEach>
 	</div>
 
-	<div style="display: block; text-align: left;">		
+	<div style="display: block; text-align: left;">
 		<c:if test="${paging.startPage != 1 }">
-			<a href="/sort3?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+			<a
+				href="/sort3?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
 		</c:if>
-		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+			var="p">
 			<c:choose>
 				<c:when test="${p == paging.nowPage }">
-					<b>${p }</b>
+					<b>[${p }]</b>
 				</c:when>
 				<c:when test="${p != paging.nowPage }">
-					<a href="/sort3?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+					<a href="/sort3?nowPage=${p }&cntPerPage=${paging.cntPerPage}">[${p }]</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage != paging.lastPage}">
-			<a href="/sort3?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+			<a
+				href="/sort3?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 		</c:if>
 	</div>
 

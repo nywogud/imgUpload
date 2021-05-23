@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.jhl.sortDto.PagingVO;
 import com.jhl.sortDto.sort5VO;
 
 @Repository
@@ -32,5 +33,13 @@ public class sort5DAOImp implements sort5DAO {
 		paraMap.put("imgTitle", imgTitle);
 		paraMap.put("imgLocation", imgLocation);
 		sqlSession.insert(Namespace + ".insertImg", paraMap);
+	}
+	
+	public int countImg() throws Exception {
+		return sqlSession.selectOne(Namespace + ".countImg");
+	}
+
+	public List<sort5VO> selectImg(PagingVO vo) throws Exception{
+		return sqlSession.selectList(Namespace + ".selectImg", vo);
 	}
 }

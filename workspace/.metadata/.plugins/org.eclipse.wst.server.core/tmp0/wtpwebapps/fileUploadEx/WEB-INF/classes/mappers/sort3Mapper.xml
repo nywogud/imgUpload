@@ -37,9 +37,10 @@
 		FROM
 		sort3,
 		(SELECT @ROWNUM := 0) R
+		ORDER BY imgNumber DESC
 		) A
 		WHERE
-		A.ROWNUM BETWEEN #{start} AND #{end};
+		A.ROWNUM BETWEEN #{start} AND #{end}	
 	</select>
 </mapper>
 
